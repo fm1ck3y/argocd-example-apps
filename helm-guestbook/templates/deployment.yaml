@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ template "helm-guestbook.fullname" . }}
   labels:
+    testlabel: "myvalue"
     app: {{ template "helm-guestbook.name" . }}
     chart: {{ template "helm-guestbook.chart" . }}
     release: {{ .Release.Name }}
