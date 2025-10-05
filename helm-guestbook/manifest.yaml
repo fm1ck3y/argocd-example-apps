@@ -30,6 +30,7 @@ metadata:
     chart: helm-guestbook-0.1.0
     heritage: Helm
     release: prod-helm-guestbook
+    testlabel: myvalue
   name: prod-helm-guestbook
 spec:
   replicas: 1
