@@ -30,6 +30,7 @@ metadata:
     chart: helm-guestbook-0.1.0
     heritage: Helm
     release: staging-helm-guestbook
+    testlabel: myvalue
   name: staging-helm-guestbook
 spec:
   replicas: 1
