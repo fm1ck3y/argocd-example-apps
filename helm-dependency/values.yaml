@@ -1,7 +1,8 @@
 
 
 
-:wordpress:
+
+wordpress:
   image:
     tag: invalid #break this app on purpose until a dedicated broken app is created
   wordpressPassword: foo
