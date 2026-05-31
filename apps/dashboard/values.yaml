@@ -1,44 +1,49 @@
-config:
-  spec:
-    destination:
-      server: https://kubernetes.default.svc
-    source:
-      repoURL: https://github.com/argoproj/argocd-example-apps
-      targetRevision: master
+# Default values for helm-guestbook.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
 
-applications:
-  - name: blue-green
-    tool:
-      helm:
-        releaseName: blue-green
-  - name: guestbook
-  - name: helm-dependency
-    tool:
-      helm:
-        releaseName: helm-dependency
-  - name: helm-guestbook
-    tool:
-      helm:
-        releaseName: helm-guestbook
-  - name: helm-hooks
-  - name: jsonnet-guestbook
-  - name: jsonnet-guestbook-tla
-  - name: kustomize-guestbook
-  - name: plugin-kasane
-    path: plugins/kasane
-    tool:
-      plugin:
-        name: kasane
-  - name: plugin-kustomized-helm
-    path: plugins/kustomized-helm
-    tool:
-      plugin:
-        name: kustomized-helm
-  - name: plugin-nix
-    path: plugins/nix
-    tool:
-      plugin:
-        name: nix
-  - name: pre-post-sync
-  - name: sock-shop
-  - name: sync-waves
+replicaCount: 1
+
+image:
+  repository: gcr.io/google-samples/gb-frontend
+  tag: v5
+  pullPolicy: IfNotPresent
+
+containerPort: 80
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations:
+    {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+  {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
